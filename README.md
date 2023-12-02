@@ -1,7 +1,7 @@
 #Construction-Ease
-##Objective:
-#•	This website is mainly designed for those people who are searching contractors for building their homes.
-#•	This platform simplifies the entire construction process, offering a turnkey solution that saves time, money, and effort for property owners.
+<h1>Objective:</h2><hr>
+•	This website is mainly designed for those people who are searching contractors for building their homes.
+•	This platform simplifies the entire construction process, offering a turnkey solution that saves time, money, and effort for property owners.
 Scope:
 •	By sitting at home, by one click user will be able to select a contractor, select a plan for building, estimate a cost and make a deal of it. 
 •	When actual construction will start user will be able to track the completion of work on site on daily basis. 
