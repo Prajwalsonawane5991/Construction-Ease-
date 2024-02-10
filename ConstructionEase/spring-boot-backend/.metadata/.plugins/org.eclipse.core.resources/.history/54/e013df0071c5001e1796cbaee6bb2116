@@ -1,0 +1,83 @@
+package Construction.Ease.Project.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import Construction.Ease.Project.Model.Contractor;
+import Construction.Ease.Project.Services.ContractorService;
+import constuction.project.data.beans.contractor;
+import constuction.project.data.exception.ResourceNotFoundException;
+
+
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/api/services/contractors")
+public class ContractorController {
+	
+	@Autowired
+	ContractorService cservice;
+	
+	
+	@GetMapping
+	public List<Contractor> getContractorData()
+	{
+		return cservice.findAll();
+	}
+	
+	
+	@PostMapping
+	public Contractor createContractor(@RequestBody Contractor contractordata)
+	{
+		return cservice.save(contractordata);
+	}
+	
+	
+	 //build get employee by id REST API
+    @GetMapping("{id}")
+    public ResponseEntity<Contractor> getContractorById(@PathVariable long id){
+        Contractor con = cservice.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + id));
+        return ResponseEntity.ok(con);
+    }
+
+    // build update employee REST API
+    @PutMapping("{id}")
+    public ResponseEntity<Contractor> updateContractor(@PathVariable long id,@RequestBody Contractor contractordetails) {
+        Contractor updatecontractor = cservice.findById(id);
+//                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+
+        updatecontractor.setUsername(contractordetails.getUsername());
+        updatecontractor.setPassword(contractordetails.getPassword());
+       
+
+        cservice.save(updatecontractor);
+
+        return ResponseEntity.ok(updatecontractor);
+    }
+
+    // build delete employee REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteContractor(@PathVariable long id){
+
+    	Contractor con = cservice.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+
+        cservice.delete(con);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
+
+}

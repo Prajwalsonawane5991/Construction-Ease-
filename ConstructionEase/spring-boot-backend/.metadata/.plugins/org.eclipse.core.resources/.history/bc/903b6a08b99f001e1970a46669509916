@@ -1,0 +1,15 @@
+package constuction.project.data;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ConstructionEaseApplication {
+
+	public static void main(String[] args) {
+		@EntityScan(basePackages = {"construction.project.beans"})
+		
+		SpringApplication.run(ConstructionEaseApplication.class, args);
+	}
+
+}

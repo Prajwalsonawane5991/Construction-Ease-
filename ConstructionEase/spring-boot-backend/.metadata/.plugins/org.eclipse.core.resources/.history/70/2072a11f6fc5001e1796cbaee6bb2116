@@ -1,0 +1,8 @@
+package Construction.Ease.Project.Services;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ContractorServiceImpl implements ContractorService {
+
+}

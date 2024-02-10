@@ -1,0 +1,54 @@
+package Construction.Ease.Project.Services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import Construction.Ease.Project.Dao.ContractorRepository;
+import Construction.Ease.Project.Model.Contractor;
+
+@Service
+public class ContractorServiceImpl implements ContractorService {
+	
+	
+	@Autowired
+	private ContractorRepository cdao;
+
+	@Override
+	public List<Contractor> findAll() {
+		
+		return cdao.findAll();
+	}
+
+	@Override
+	public Contractor save(Contractor contractordata) {
+		
+		return cdao.save(contractordata);
+	}
+
+	@Override
+	public Contractor findById(long id) {
+	
+		Optional<Contractor> op = cdao.findById(id);
+		if(op.isPresent())
+		{
+			return op.get();
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	@Override
+	public void delete(Contractor con) {
+		
+		
+	}
+	
+	
+	
+
+}

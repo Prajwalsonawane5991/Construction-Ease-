@@ -1,0 +1,9 @@
+package Construction.Ease.Project.Dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import Construction.Ease.Project.Model.Contractor;
+
+public interface ContractorRepository extends JpaRepository<Contractor,Long> {
+
+}
