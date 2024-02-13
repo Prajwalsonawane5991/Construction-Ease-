@@ -20,9 +20,9 @@ import constuction.project.data.exception.ResourceNotFoundException;
 import constuction.project.data.services.ContractorRepository;
 
 
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin("*")//origins = "http://localhost:3001")
 @RestController
-@RequestMapping("/api/services/")
+@RequestMapping("/api/services")
 public class ContractorController  {
 	
 	

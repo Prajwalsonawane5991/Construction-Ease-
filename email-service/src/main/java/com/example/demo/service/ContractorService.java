@@ -47,7 +47,7 @@ public class ContractorService {
 	{
 		Contractor con= contractorRepository.findByEmail(email)
 		.orElseThrow(()-> new RuntimeException("Contractor not found with this email "+email));
-		if(con.getOtp().equals(otp) && Duration.between(con.getOtpgenerationtime(),LocalDateTime.now()).getSeconds()<(3*60)
+		if(con.getOtp().equals(otp) //&& Duration.between(con.getOtpgenerationtime(),LocalDateTime.now()).getSeconds()<(3*60)
 				)
 		{
 			System.out.println("In Verify");
