@@ -28,10 +28,10 @@ public class ContractorController {
 		return new ResponseEntity<>(contractorservice.resister(resisterdto), HttpStatus.OK);
 	}
 
-	@GetMapping("/verify-account/{email}/{otp}")
-	public ResponseEntity<String> verifyAccount(@PathVariable("email") String email, @PathVariable("otp") String otp) {
+	@PutMapping("/verify-account")
+	public ResponseEntity<String> verifyAccount(@RequestParam("email") String email,@RequestParam("otp") String otp) {
 		System.out.println("IN VERIFICATION METHOD");
-		return new ResponseEntity<String>(contractorservice.verifyAccount(email, otp), HttpStatus.OK);
+		return new ResponseEntity<String>(contractorservice.verifyAccount(email,otp), HttpStatus.OK);
 	}
 
 	@PutMapping("/regenerate-otp")

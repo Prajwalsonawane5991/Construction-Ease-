@@ -39,7 +39,7 @@ public class ContractorService {
 	con.setOtp(otp);
 	con.setOtpgenerationtime(LocalDateTime.now());
 	contractorRepository.save(con);
-	return "Contractor Resistation Successfully";
+	return "Contractor Registered Successfully";
 	}
 	
 	
@@ -47,13 +47,14 @@ public class ContractorService {
 	{
 		Contractor con= contractorRepository.findByEmail(email)
 		.orElseThrow(()-> new RuntimeException("Contractor not found with this email "+email));
-		if(con.getOtp().equals(otp) //&& Duration.between(con.getOtpgenerationtime(),LocalDateTime.now()).getSeconds()<(3*60)
+		System.out.println(Duration.between(con.getOtpgenerationtime(),LocalDateTime.now()).getSeconds());
+		if(con.getOtp().equals(otp) && Duration.between(con.getOtpgenerationtime(),LocalDateTime.now()).getSeconds()<(5*60)
 				)
 		{
 			System.out.println("In Verify");
 			con.setActive(true);
 			contractorRepository.save(con);
-			return "OTP Verify Done";
+			return "OTP Verification Done";
 			
 		}
 		return "Please Regenerate Otp and Try Again";
@@ -91,7 +92,7 @@ public class ContractorService {
 		}
 		
 		
-		return "login success";
+		return "wrong credentials entered";
 	}
 
 

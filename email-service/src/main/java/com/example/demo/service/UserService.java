@@ -47,7 +47,7 @@ public class UserService {
 	{
 		User con= userRepository.findByEmail(email)
 		.orElseThrow(()-> new RuntimeException("User not found with this email "+email));
-		if(con.getOtp().equals(otp) && Duration.between(con.getOtpgenerationtime(),LocalDateTime.now()).getSeconds()<(3*60))
+		if(con.getOtp().equals(otp) && Duration.between(con.getOtpgenerationtime(),LocalDateTime.now()).getSeconds()<(5*60))
 		{
 			
 			con.setActive(true);
