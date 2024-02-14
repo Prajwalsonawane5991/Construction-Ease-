@@ -1,0 +1,5 @@
+package construction.project.beans;
+
+public class Client {
+
+}

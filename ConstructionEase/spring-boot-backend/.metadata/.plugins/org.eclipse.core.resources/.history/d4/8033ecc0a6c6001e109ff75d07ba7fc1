@@ -1,0 +1,5 @@
+package constuction.project.data.beans;
+
+public class contractor_profile {
+
+}

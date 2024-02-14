@@ -1,0 +1,66 @@
+package constuction.project.data.beans;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class contractor_profile 
+{
+	
+	private int id;
+	private String content_type;
+	private double rate;
+	
+	
+	public contractor_profile() {
+		super();
+	}
+
+
+	public contractor_profile(int id, String content_type, double rate) {
+		super();
+		this.id = id;
+		this.content_type = content_type;
+		this.rate = rate;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getContent_type() {
+		return content_type;
+	}
+
+
+	public void setContent_type(String content_type) {
+		this.content_type = content_type;
+	}
+
+
+	public double getRate() {
+		return rate;
+	}
+
+
+	public void setRate(double rate) {
+		this.rate = rate;
+	}
+
+
+	@Override
+	public String toString() {
+		return "contractor_profile [id=" + id + ", content_type=" + content_type + ", rate=" + rate + "]";
+	}
+	
+	
+	
+	
+
+}

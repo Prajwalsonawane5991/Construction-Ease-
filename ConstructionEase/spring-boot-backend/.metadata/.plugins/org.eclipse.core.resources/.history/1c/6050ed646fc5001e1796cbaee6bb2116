@@ -1,0 +1,5 @@
+package Construction.Ease.Project.Services;
+
+public interface ContractorService {
+
+}

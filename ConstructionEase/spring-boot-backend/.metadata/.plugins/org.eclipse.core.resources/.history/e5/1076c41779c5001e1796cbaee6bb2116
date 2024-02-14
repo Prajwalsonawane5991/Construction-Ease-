@@ -1,0 +1,5 @@
+package constuction.project.data.services;
+
+public class ContractorServiceImpl implements contra{
+
+}

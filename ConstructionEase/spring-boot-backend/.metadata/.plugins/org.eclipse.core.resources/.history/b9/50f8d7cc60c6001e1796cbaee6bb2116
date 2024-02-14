@@ -1,0 +1,32 @@
+package com.demo.project.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.project.dao.studentDao;
+import com.demo.project.model.student;
+
+@RestController
+@RequestMapping("api/services")
+public class studentController 
+{
+	
+	@Autowired
+	private studentDao sdao;
+	
+	
+	@GetMapping("/students")
+	public List<student> getAllStudent()
+	{
+		return sdao.findAll();
+	}
+	
+	public student addStudent(student studentobj)
+	{
+		return sdao.save(studentobj);
+	}
+}

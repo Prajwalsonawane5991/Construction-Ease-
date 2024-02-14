@@ -1,0 +1,5 @@
+package Construction.Ease.Project.Dao;
+
+public interface ContractorRepository {
+
+}

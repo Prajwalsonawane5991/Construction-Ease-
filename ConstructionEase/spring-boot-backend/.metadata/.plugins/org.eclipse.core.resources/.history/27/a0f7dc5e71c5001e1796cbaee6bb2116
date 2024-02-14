@@ -1,0 +1,27 @@
+package Construction.Ease.Project.Services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import Construction.Ease.Project.Dao.ContractorRepository;
+import Construction.Ease.Project.Model.Contractor;
+
+@Service
+public class ContractorServiceImpl implements ContractorService {
+	
+	
+	@Autowired
+	private ContractorRepository cdao;
+
+	@Override
+	public List<Contractor> findAll() {
+		
+		return cdao.findAll();
+	}
+	
+	
+	
+
+}

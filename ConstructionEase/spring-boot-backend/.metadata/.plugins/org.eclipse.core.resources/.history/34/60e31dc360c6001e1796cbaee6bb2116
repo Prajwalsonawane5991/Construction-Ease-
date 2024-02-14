@@ -1,0 +1,22 @@
+package com.demo.project.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.project.dao.studentDao;
+import com.demo.project.model.student;
+
+@RestController
+public class studentController 
+{
+	
+	@Autowired
+	private studentDao sdao;
+	
+	public List<student> getAllStudent()
+	{
+		return sdao.findAll();
+	}
+}

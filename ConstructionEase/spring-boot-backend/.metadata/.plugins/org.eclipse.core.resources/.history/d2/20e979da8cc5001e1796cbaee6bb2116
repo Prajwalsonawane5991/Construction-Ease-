@@ -1,0 +1,22 @@
+package Construction.Ease.Project.Services;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import Construction.Ease.Project.Model.Contractor;
+
+public interface ContractorService {
+
+//	List<Contractor> findAll();
+
+	Contractor save(Contractor contractordata);
+
+	Contractor findById(long id);
+
+	void delete(Contractor con);
+
+	ResponseEntity<List<Contractor>> findAll();
+
+
+}
