@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import constuction.project.data.beans.contractor;
+import constuction.project.data.beans.Contractor;
 import constuction.project.data.exception.ResourceNotFoundException;
 import constuction.project.data.services.ContractorRepository;
 
@@ -31,30 +31,30 @@ public class ContractorController  {
 	private ContractorRepository CRepo;
 	
 	@GetMapping("/contractors")
-	public List<contractor> getContractorData()
+	public List<Contractor> getContractorData()
 	{
 		
 		return CRepo.findAll();
 	}
 	
 	@PostMapping("/contractors")
-	public contractor createContractor(@RequestBody contractor contractordata)
+	public Contractor createContractor(@RequestBody Contractor contractordata)
 	{
 		return CRepo.save(contractordata);
 	}
 	
 	 // build get employee by id REST API
     @GetMapping("/contractors/{id}")
-    public ResponseEntity<contractor> getContractorById(@PathVariable long id){
-        contractor con = CRepo.findById(id)
+    public ResponseEntity<Contractor> getContractorById(@PathVariable long id){
+        Contractor con = CRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + id));
         return ResponseEntity.ok(con);
     }
 
     // build update employee REST API
     @PutMapping("/contractors/{id}")
-    public ResponseEntity<contractor> updateContractor(@PathVariable long id,@RequestBody contractor contractordetails) {
-        contractor updatecontractor = CRepo.findById(id)
+    public ResponseEntity<Contractor> updateContractor(@PathVariable long id,@RequestBody Contractor contractordetails) {
+        Contractor updatecontractor = CRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
 
         updatecontractor.setUsername(contractordetails.getUsername());
@@ -72,7 +72,7 @@ public class ContractorController  {
     @DeleteMapping("/contractors/{id}")
     public ResponseEntity<HttpStatus> deleteContractor(@PathVariable long id){
 
-    	contractor con = CRepo.findById(id)
+    	Contractor con = CRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
 
         CRepo.delete(con);

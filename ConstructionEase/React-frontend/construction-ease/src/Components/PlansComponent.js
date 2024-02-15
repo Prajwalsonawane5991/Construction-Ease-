@@ -30,7 +30,7 @@ const PlansComponent = () => {
             <div class="services__img"><img src="assets/img/service/2.jpg" alt=""/></div>
             <h2 class="services__title"><a href="#">Silver Premium Plans</a></h2>
             <div class="services__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet ut lacus a tincidunt. Quisque luctus nibh augue, non</div>
-            <a class="btn  btn-outline-primary btn-custom" href="service-single.html">read more</a>
+            <a class="btn  btn-outline-primary btn-custom" href="/add-contractor">read more</a>
           </div>
         </div>
 
@@ -39,7 +39,7 @@ const PlansComponent = () => {
             <div class="services__img"><img src="assets/img/service/3.jpg" alt=""/></div>
             <h2 class="services__title"><a href="#">Gold Premium plans</a></h2>
             <div class="services__desc">Duis porttitor libero ac egestas euismod. Maecenas quis felis turpis. Nulla quis turpis sed augue egestas dapibus vel at</div>
-            <a class="btn  btn-outline-primary btn-custom" href="service-single.html">read more</a>
+            <a class="btn  btn-outline-primary btn-custom" href="/add-contractor">read more</a>
           </div>
         </div>
       </div>

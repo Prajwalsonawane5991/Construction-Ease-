@@ -38,6 +38,7 @@ const TeamComponent = () => {
 									</div>
 								</div>
 							</div>
+							
 							<div className="team__body">
 								<div className="team__user">
 									<h4 className="team__name">Sean Coleman</h4><span className="team__work">Photography</span>
@@ -50,7 +51,7 @@ const TeamComponent = () => {
 					<div className="col-sm-6 col-md-6 col-lg-3 ">
 						{/* team */}
 						<div className="team">
-							<div className="team__img"><img src="assets/img/team/2.jpg" alt="" />
+							<div className="team__img"><img src="assets/img/team/1.jpg" alt="" />
 								<div className="team__overlay">
 									<div className="md-tb">
 										<div className="md-tb__cell md-text-center">
@@ -79,7 +80,7 @@ const TeamComponent = () => {
 					<div className="col-sm-6 col-md-6 col-lg-3 ">
 						{/* team */}
 						<div className="team">
-							<div className="team__img"><img src="assets/img/team/3.jpg" alt="" />
+							<div className="team__img"><img src="assets/img/team/1.jpg" alt="" />
 								<div className="team__overlay">
 									<div className="md-tb">
 										<div className="md-tb__cell md-text-center">
@@ -108,7 +109,7 @@ const TeamComponent = () => {
 					<div className="col-sm-6 col-md-6 col-lg-3 ">
 						{/* team */}
 						<div className="team">
-							<div className="team__img"><img src="assets/img/team/4.jpg" alt="" />
+							<div className="team__img"><img src="assets/img/team/1.jpg" alt="" />
 								<div className="team__overlay">
 									<div className="md-tb">
 										<div className="md-tb__cell md-text-center">

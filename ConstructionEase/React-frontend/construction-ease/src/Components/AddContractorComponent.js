@@ -173,4 +173,4 @@ const AddContractorComponent = () => {
   )
 }
 
-export default AddContractorComponent
+export default AddContractorComponent;

@@ -1,4 +1,4 @@
-.footer{
+/* .footer{
 
   position: absolute;
   bottom: 0%;
@@ -7,4 +7,8 @@
   background-color: black;
   text-align: center;
   color: white;
+} */
+
+.page-wrap{
+  min-height: 100vh;
 }
