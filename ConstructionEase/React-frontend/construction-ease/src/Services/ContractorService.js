@@ -19,6 +19,17 @@ class ContractorService{
         })
   }
 
+  signUp(userData)
+  {
+      return axios.post('http://localhost:8084/api/services/register', userData)
+     
+  }
+
+  verifyOtp(credintials) {
+    console.log(credintials)
+    return axios.put(`http://localhost:8084/api/services/verifyotp`,credintials);
+  }
+
   loginContractor(){
         return axios.get(CONTRACTOR_BASE_RESTAPI_URL)
   }
@@ -36,6 +47,16 @@ deleteContractor(contractorId){
     return axios.delete(CONTRACTOR_BASE_RESTAPI_URL + '/' +contractorId);
 }
 
+forgotPassword(contractorEmail)
+{
+  return axios.put("http://localhost:8084/api/services/forgot-password/"+contractorEmail);
 }
 
+
+resetPassword(resetData)
+{
+  return axios.put("http://localhost:8084/api/services/reset-password",resetData);
+}
+
+}
 export default new ContractorService();

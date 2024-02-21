@@ -4,8 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ContractorHeaderComponent from "./contractorheader";
 import Profile from "./Profile";
 import AddProjectComponent from "./AddProjectComponent";
+import { toast } from 'react-toastify';
 
-const SignedInComponent = () => {
+const SignInComponent = () => {
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
   const [mobile, setmobile] = useState('');
@@ -17,6 +18,8 @@ const SignedInComponent = () => {
   const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+  const [client, setClient] = useState([]);
+  const [foundClient, setFoundClient] = useState(null);
  
 
   const fetchContractor = () => {
@@ -37,7 +40,8 @@ const SignedInComponent = () => {
 
     console.log(loginas);
 
-    if (loginas === 'Contractor') {
+    if (loginas === 'Contractor') 
+    {
       console.log('hii')
       const foundContractor = contractor.find(c => c.username === username && c.password === password);
       console.log(foundContractor)
@@ -54,7 +58,9 @@ const SignedInComponent = () => {
         setFlag(true);
         console.log('flag is', flag);
 
-        alert('Logged in successfully');
+        
+        toast.success("Logged in successfully")
+
         console.log(foundContractor.id)
         // navigate("/projects/"+foundContractor.id);
       }
@@ -64,11 +70,37 @@ const SignedInComponent = () => {
         setemail('');
         setmobile('');
         console.log('Invalid username or password');
-        alert('Invalid username or password');
+     
+        toast.error("Invalid username or password")
       }
     }
     else {
-      console.log(password);
+      if (loginas === 'Client') {
+        console.log('hii', username, password)
+        const foundClient = client.find((c) => c.username === username && c.password === password);
+        console.log('check', foundClient);
+        if (foundClient) {
+          console.log('authenticated', foundClient);
+          console.log('found client', foundClient);
+          setFlag(true);
+          console.log('flag is', flag);
+          setFoundClient(foundClient);
+          setusername(foundClient.username);
+          setpassword(foundClient.password);
+          setemail(foundClient.email);
+          setmobile(foundClient.mobile);
+          setId(foundClient.id);
+  
+         
+          toast.success("Logged in successfully");
+        }
+        else {
+  
+          console.log('Invalid username or password');
+         
+          toast.error("Invalid username or password");
+        }
+      }
     }
   }
 
@@ -93,12 +125,14 @@ const SignedInComponent = () => {
     ContractorService.updateContractor(contractorId, updatedContractor)
       .then((response) => {
         console.log('Profile updated successfully', response.data);
-        alert('Profile updated successfully');
+       
+        toast.success("Profile updated successfully");
 
       })
       .catch((error) => {
         console.error('Error updating profile', error);
-        alert('Error updating profile');
+  
+        toast.error("Error updating profile");
       });
   }
 
@@ -120,9 +154,9 @@ const SignedInComponent = () => {
                   <div className="main-content">
                     <div className="row">
                       <div className="col-lg-6 ">
-                        <form className="contact-form">
+                        <form className="contact-form" onSubmit={(e) => login(e)}>
                           <label htmlFor="cars">Login As:</label>
-                          <div className="form-item">
+                          <div className="form-item required">
                             <select name="loginas" id="login" onChange={(e) => setloginas(e.target.value)}>
                               <option value="">Select</option>
                               <option value="Contractor">Contractor</option>
@@ -131,13 +165,14 @@ const SignedInComponent = () => {
                             </select>
                           </div>
                           <div className="form-item">
-                            <input className="form-control" type="text" name="username" placeholder="Enter Username" onChange={(e) => setusername(e.target.value)} />
+                            <input className="form-control" type="text" name="username" placeholder="Enter Username" required onChange={(e) => setusername(e.target.value)} />
                           </div>
                           <div className="form-item">
-                            <input className="form-control" type="text" name="password" placeholder="Enter Password" onChange={(e) => setpassword(e.target.value)} />
+                            <input className="form-control" type="text" name="password" placeholder="Enter Password" required  onChange={(e) => setpassword(e.target.value)} />
                           </div>
-                          <button className="btn btn-outline-primary btn-round mb-30" type="submit" onClick={(e) => login(e)}>Login</button>
-                          <button className="btn btn-outline-danger btn-round mb-30" type="reset" style={{ marginLeft: "5px" }}>Cancel</button>
+                          <button className="btn btn-outline-primary btn-round mb-30" type="submit">Login</button>
+                          <button className="btn btn-outline-danger btn-round mb-30" type="reset" style={{ marginLeft: "5px" }}>Reset</button>
+                          <p><a href="/forget">forget password?</a></p>
                         </form>
                       </div>
                       <div className="col-lg-6">
@@ -186,4 +221,4 @@ const SignedInComponent = () => {
   );
 }
 
-export default SignedInComponent;
+export default SignInComponent;

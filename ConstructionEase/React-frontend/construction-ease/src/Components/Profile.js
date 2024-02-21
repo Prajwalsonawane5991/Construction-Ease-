@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import ContractorService from '../Services/ContractorService';
+import {toast} from 'react-toastify';
+
 
 export default function Profile(props) {
     console.log(props.contractor);
@@ -12,7 +14,7 @@ export default function Profile(props) {
   const [loginas, setloginas] = useState('');
   const [contractor, setcontractor] = useState([]);
   const [foundContractor, setFoundContractor] = useState(contractorFromParent);
-
+ 
   const updateProfile = (e) => {
 
     e.preventDefault();
@@ -34,11 +36,13 @@ export default function Profile(props) {
     ContractorService.updateContractor(contractorId, updatedContractor)
       .then((response) => {
         console.log('Profile updated successfully', response.data);
-        alert('Profile updated successfully');
+        toast.success("Profile updated successfully");
+        
       })
       .catch((error) => {
         console.error('Error updating profile', error);
-        alert('Error updating profile');
+        toast.error("Error updating profile");
+        
       });
   }
 

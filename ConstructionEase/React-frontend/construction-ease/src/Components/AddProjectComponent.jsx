@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { addProject } from '../apiservice';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -11,11 +13,15 @@ function AddProjectComponent(props) {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
+    const  [negotiable,setNegotiable] = useState('')
     const [file, setFiles] = useState(null);
+    const [cid, setCid] = useState('');
+    const [area, setArea] = useState('');
 
 
     const handleFileChange = (e) => {
         e.preventDefault();
+        setCid(props.id);
         const selectedFiles = (e.target.files[0]);
         setFiles(selectedFiles);
     };
@@ -28,8 +34,10 @@ function AddProjectComponent(props) {
         formData.append('name', name);
         formData.append('category', category);
         formData.append('price', price);
-        formData.append('contractorId', props.cid);
+        formData.append('contractorId', cid);
         formData.append('description', description);
+        formData.append('negotiable', negotiable);
+        formData.append('area', area);
 
         try {
             await addProject(formData);
@@ -40,11 +48,14 @@ function AddProjectComponent(props) {
             setPrice('');
             setCategory('');
             setFiles([]);
+            setNegotiable('');
+            setArea('');
 
-            alert('Project added successfully!');
+         
+            toast.success("Project added successfully! ");
         } catch (error) {
             console.error('Error adding project:', error);
-            alert('Error adding project.');
+            toast.error("Error adding project.");
         }
     };
 
@@ -77,6 +88,7 @@ function AddProjectComponent(props) {
                                                     name="name"
                                                     placeholder="Project Name"
                                                     value={name}
+                                                    required
                                                     onChange={(e) => setName(e.target.value)}
                                                 />
                                             </div>
@@ -95,6 +107,7 @@ function AddProjectComponent(props) {
                                                     name="price"
                                                     placeholder="Price (Per square feet)"
                                                     value={price}
+                                                    required
                                                     onChange={(e) => setPrice(e.target.value)}
                                                 />
                                             </div>
@@ -105,6 +118,7 @@ function AddProjectComponent(props) {
                                                     name="description"
                                                     placeholder="Description"
                                                     value={description}
+                                                    required
                                                     onChange={(e) => setDescription(e.target.value)}
                                                 />
                                             </div>
@@ -113,13 +127,23 @@ function AddProjectComponent(props) {
 
                                         <div className="col-lg-6">
                                             <div className="form-item">
-                                                <h2>Upload Image</h2>
+                                                
                                                 <input type="file" onChange={handleFileChange} />
                                             </div>
                                             <div className="form-item">
-                                                <input className="form-control" name="cid"  placeholder="ContractorId" type="text" value={props.id} readOnly />
+                                                <input className="form-control" name="contractorId"  placeholder="ContractorId" type="text" value={props.id} readOnly />
                                             </div>
-
+                                            <div className="form-item">
+                                            <select name="negotiable" id="negotiable" value={negotiable} required onChange={(e) => setNegotiable(e.target.value)}>
+                                                    <option value="">Select</option>
+                                                    <option value="Negotiable">Negotiable</option>
+                                                    <option value="Non Negotiable">Non Negotiable</option>
+                                                </select>
+                                            </div>
+                                            <div className="form-item">
+                                                <input className="form-control" name="area"  placeholder="Square ft Area Range" type="text" value={area} required
+                                            onChange={(e) => setArea(e.target.value)}/>
+                                            </div>
                                             <button className="btn btn-outline-primary btn-round mb-30" type="submit">
                                                 Add
                                             </button>

@@ -37,7 +37,7 @@ const HeaderComponent = () => {
               </li>
               <li>
                
-                <NavLink to="/add-contractor">SignUp</NavLink>
+                <NavLink to="/signup">SignUp</NavLink>
               </li>
               
             </ul>
