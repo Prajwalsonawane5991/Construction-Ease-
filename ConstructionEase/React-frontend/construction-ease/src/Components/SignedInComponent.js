@@ -20,7 +20,7 @@ const SignInComponent = () => {
   const { id } = useParams();
   const [client, setClient] = useState([]);
   const [foundClient, setFoundClient] = useState(null);
- 
+
 
   const fetchContractor = () => {
     ContractorService.loginContractor().then((response) => {
@@ -36,69 +36,86 @@ const SignInComponent = () => {
   }, []);
 
   const login = (e) => {
+
     e.preventDefault();
-
-    console.log(loginas);
-
-    if (loginas === 'Contractor') 
+    
+    if(loginas==""|| loginas==undefined)
     {
-      console.log('hii')
-      const foundContractor = contractor.find(c => c.username === username && c.password === password);
-      console.log(foundContractor)
-      if (foundContractor) {
-        console.log('authenticated', foundContractor);
-        console.log('found Contractor', foundContractor);
-
-        setFoundContractor(foundContractor);
-        setusername(foundContractor.username);
-        setpassword(foundContractor.password);
-        setemail(foundContractor.email);
-        setmobile(foundContractor.mobile);
-        setId(foundContractor.id);
-        setFlag(true);
-        console.log('flag is', flag);
-
-        
-        toast.success("Logged in successfully")
-
-        console.log(foundContractor.id)
-        // navigate("/projects/"+foundContractor.id);
-      }
-      else {
-        setusername('');
-        setpassword('');
-        setemail('');
-        setmobile('');
-        console.log('Invalid username or password');
-     
-        toast.error("Invalid username or password")
-      }
+      toast.error("Select option from the login menu");
+    }
+    else if (username == "" || username == undefined) {
+      toast.error("Enter your Username");
+    }
+    else if (password==""||password==undefined)
+    {
+      toast.error("Enter your password");
     }
     else {
-      if (loginas === 'Client') {
-        console.log('hii', username, password)
-        const foundClient = client.find((c) => c.username === username && c.password === password);
-        console.log('check', foundClient);
-        if (foundClient) {
-          console.log('authenticated', foundClient);
-          console.log('found client', foundClient);
+
+
+      console.log(loginas);
+
+      if (loginas === 'Contractor') {
+        let name = e.target.value;
+        console.log(name);
+        console.log('hii')
+        const foundContractor = contractor.find(c => c.username === username && c.password === password);
+        console.log(foundContractor)
+        if (foundContractor) {
+          console.log('authenticated', foundContractor);
+          console.log('found Contractor', foundContractor);
+
+          setFoundContractor(foundContractor);
+          setusername(foundContractor.username);
+          setpassword(foundContractor.password);
+          setemail(foundContractor.email);
+          setmobile(foundContractor.mobile);
+          setId(foundContractor.id);
           setFlag(true);
           console.log('flag is', flag);
-          setFoundClient(foundClient);
-          setusername(foundClient.username);
-          setpassword(foundClient.password);
-          setemail(foundClient.email);
-          setmobile(foundClient.mobile);
-          setId(foundClient.id);
-  
-         
-          toast.success("Logged in successfully");
+
+
+          toast.success(loginas+" "+"Logged in successfully")
+
+          console.log(foundContractor.id)
+          
         }
         else {
-  
+          setusername('');
+          setpassword('');
+          setemail('');
+          setmobile('');
           console.log('Invalid username or password');
-         
-          toast.error("Invalid username or password");
+
+          toast.error("Invalid username or password Entered")
+        }
+      }
+      else {
+        if (loginas === 'Client') {
+          console.log('hii', username, password)
+          const foundClient = client.find((c) => c.username === username && c.password === password);
+          console.log('check', foundClient);
+          if (foundClient) {
+            console.log('authenticated', foundClient);
+            console.log('found client', foundClient);
+            setFlag(true);
+            console.log('flag is', flag);
+            setFoundClient(foundClient);
+            setusername(foundClient.username);
+            setpassword(foundClient.password);
+            setemail(foundClient.email);
+            setmobile(foundClient.mobile);
+            setId(foundClient.id);
+
+
+            toast.success("Logged in successfully");
+          }
+          else {
+
+            console.log('Invalid username or password');
+
+            toast.error("Invalid username or password");
+          }
         }
       }
     }
@@ -125,13 +142,13 @@ const SignInComponent = () => {
     ContractorService.updateContractor(contractorId, updatedContractor)
       .then((response) => {
         console.log('Profile updated successfully', response.data);
-       
+
         toast.success("Profile updated successfully");
 
       })
       .catch((error) => {
         console.error('Error updating profile', error);
-  
+
         toast.error("Error updating profile");
       });
   }
@@ -165,10 +182,10 @@ const SignInComponent = () => {
                             </select>
                           </div>
                           <div className="form-item">
-                            <input className="form-control" type="text" name="username" placeholder="Enter Username" required onChange={(e) => setusername(e.target.value)} />
+                            <input className="form-control" type="text" name="username" placeholder="Enter Username" onChange={(e) => setusername(e.target.value)} />
                           </div>
                           <div className="form-item">
-                            <input className="form-control" type="text" name="password" placeholder="Enter Password" required  onChange={(e) => setpassword(e.target.value)} />
+                            <input className="form-control" type="password" name="password" placeholder="Enter Password" onChange={(e) => setpassword(e.target.value)} />
                           </div>
                           <button className="btn btn-outline-primary btn-round mb-30" type="submit">Login</button>
                           <button className="btn btn-outline-danger btn-round mb-30" type="reset" style={{ marginLeft: "5px" }}>Reset</button>
@@ -205,18 +222,18 @@ const SignInComponent = () => {
           }
         </section>
         {flag ? <ContractorHeaderComponent /> : ""}
-      
-          {flag &&(
+
+        {flag && (
           <div>
             <AddProjectComponent id={cid}></AddProjectComponent>
-            <Profile contractor={JSON.stringify(foundContractor)}></Profile> 
+            <Profile contractor={JSON.stringify(foundContractor)}></Profile>
           </div>
 
         )}
 
 
       </div>
-    
+
     </>
   );
 }

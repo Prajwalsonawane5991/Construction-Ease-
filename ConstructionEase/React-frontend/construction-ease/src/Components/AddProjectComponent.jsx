@@ -28,6 +28,36 @@ function AddProjectComponent(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(name==""||name==undefined)
+        {
+            toast.error("Project name is a required field")
+        }
+       else if(category==""||category==undefined)
+        {
+            toast.error("select category")
+        }
+        else if(price==""||price==undefined)
+        {
+            toast.error("Price is a required field")
+        }
+        else if(description==""||description==undefined)
+        {
+            toast.error("Enter Description")
+        }
+        else if(file==""||file==undefined)
+        {
+            toast.error("file is not chosen")
+        }
+        else if(negotiable==""||negotiable==undefined)
+        {
+            toast.error("select the deal type")
+        }
+        else if(area==""||area==undefined)
+        {
+            toast.error("select the area")
+        }
+
+        else{
         const formData = new FormData();
         console.log(file);
         formData.append("file",file);
@@ -58,7 +88,7 @@ function AddProjectComponent(props) {
             toast.error("Error adding project.");
         }
     };
-
+    }
 
     return (
         <>
@@ -88,7 +118,6 @@ function AddProjectComponent(props) {
                                                     name="name"
                                                     placeholder="Project Name"
                                                     value={name}
-                                                    required
                                                     onChange={(e) => setName(e.target.value)}
                                                 />
                                             </div>
@@ -107,7 +136,7 @@ function AddProjectComponent(props) {
                                                     name="price"
                                                     placeholder="Price (Per square feet)"
                                                     value={price}
-                                                    required
+                                                 
                                                     onChange={(e) => setPrice(e.target.value)}
                                                 />
                                             </div>
@@ -118,7 +147,7 @@ function AddProjectComponent(props) {
                                                     name="description"
                                                     placeholder="Description"
                                                     value={description}
-                                                    required
+                                                   
                                                     onChange={(e) => setDescription(e.target.value)}
                                                 />
                                             </div>
@@ -134,14 +163,14 @@ function AddProjectComponent(props) {
                                                 <input className="form-control" name="contractorId"  placeholder="ContractorId" type="text" value={props.id} readOnly />
                                             </div>
                                             <div className="form-item">
-                                            <select name="negotiable" id="negotiable" value={negotiable} required onChange={(e) => setNegotiable(e.target.value)}>
+                                            <select name="negotiable" id="negotiable" value={negotiable}  onChange={(e) => setNegotiable(e.target.value)}>
                                                     <option value="">Select</option>
                                                     <option value="Negotiable">Negotiable</option>
                                                     <option value="Non Negotiable">Non Negotiable</option>
                                                 </select>
                                             </div>
                                             <div className="form-item">
-                                                <input className="form-control" name="area"  placeholder="Square ft Area Range" type="text" value={area} required
+                                                <input className="form-control" name="area"  placeholder="Square ft Area Range" type="text" value={area} 
                                             onChange={(e) => setArea(e.target.value)}/>
                                             </div>
                                             <button className="btn btn-outline-primary btn-round mb-30" type="submit">

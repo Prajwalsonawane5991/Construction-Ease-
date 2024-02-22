@@ -16,34 +16,49 @@ const SignUpComponent = () => {
   const navigate = useNavigate();
   const save = (e) => {
     e.preventDefault();
-    if(!email.match("@gmail.com")){
-      toast.error("Email is not in correct format");
+    
+    
+    if(signup==""|| signup==undefined)
+    {
+        toast.error("Please select from the Login menu")
+      }
+     else if(!email.match("@gmail.com")){
+        toast.error("Email is not in correct format");
+      }
+      else if((mobile+"").length==0)
+      {
+        toast.error("Mobile Number cannot be empty")
     }
+    
     else if((mobile+"").length >10)
     {
       toast.error("Mobile Number must be of 10 digit only")
     }
+    
     else if((mobile+"").length <10)
     {
       toast.error("Mobile Number must be of 10 digit only")
     }
+    
     else if(username.length==0)
     {
       toast.error("Enter the User-Name");
     }
+    else if(password.length==0)
+    {
+      toast.error("Enter the password");
+    }
     else{
-
-
-
-    
-    if(signup==='Contractor'){
-    const contractor = { username, password, mobile,email };
+      
+      if(signup==='Contractor'){
+       
+      const contractor = { username, password, mobile,email };
     
     ContractorService.signUp(contractor)
       .then((response) => {
         setFlag(true);
         console.log(response.data);
-        toast.success("Registered successfully");
+        toast.success("OTP send to Registered Email Id");
         navigate(`/verifyOtp?email=${encodeURIComponent(email)}`);
 
       // Redirect to the verification page with email and OTP as query parameters
@@ -64,7 +79,7 @@ const SignUpComponent = () => {
         .then((response) => {
           setFlag(true);
           console.log(response.data);
-          toast.success("Registered successfully");
+          toast.success("OTP send to Registered Email Id");
           navigate(`/validateOtp?email=${encodeURIComponent(email)}`);
   
         // Redirect to the verification page with email and OTP as query parameters

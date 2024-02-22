@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
+import { useNavigate, useLocation, useParams } from "react-router-dom"; // Import useNavigate
 import ContractorService from "../Services/ContractorService";
 import { toast } from 'react-toastify';
 
@@ -9,6 +9,7 @@ const OTPValidation = () => {
   const [flag, setFlag] = useState("");
   const location = useLocation();
   const navigate = useNavigate(); // Use useNavigate hook
+  const params = useParams();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -25,27 +26,18 @@ const OTPValidation = () => {
     })
       .then((response) => {
         console.log(response.data);
-        
-        console.log(flag);
-        setFlag(true);
-        if(flag){
-       
-       
-        toast.success("otp verified successfully");
-        navigate('/signin'); // Use navigate instead of Navigate
-        }
-        else{
-          toast.error("Otp mismatch try again");
-        }
+        toast.success("OTP Verification Done")
+        navigate("/signin")
       })
       .catch(error => {
         console.log(error);
-     
+        toast.error(error.response.data.message);
       });
   }
 
   const [countdown, setCountdown] = useState(300);
-  useEffect(() => {
+
+  const setIntervalForCountdown = () => {
     const interval = setInterval(() => {
       setCountdown(prevCountdown => {
         if (prevCountdown > 0) {
@@ -56,7 +48,23 @@ const OTPValidation = () => {
         }
       });
     }, 1000);
+  }
+
+  useEffect(() => {
+    setIntervalForCountdown();
   }, [])
+
+  const handleRegenration =() =>{
+    ContractorService.regenerateOtp(email)
+    .then((response) => {
+      setCountdown(300);
+      setIntervalForCountdown();
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 
   return (
     <div>
@@ -79,14 +87,15 @@ const OTPValidation = () => {
                         <input className="form-control" type="text" name="email" value={email} placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} readOnly />
                       </div>
                       <div className="form-item">
-                        <input className="form-control" type="text" name="otp" value={otp} placeholder="Enter OTP" onChange={(e) => setOtp(e.target.value)} />
+                        <input className="form-control" type="text" name="otp"
+                        disabled = {countdown == 0 ? true : false}
+                         value={otp} placeholder="Enter OTP" onChange={(e) => setOtp(e.target.value)} />
                       </div>
                       <div className="lead my-3 text-danger">Time Left : {countdown}</div>
-                      <div>
-                        {countdown === 0 ? toast.error("Time Expired") : null}
-                      </div>
                       <button className="btn btn-primary btn-round mb-30" type="button" onClick={verifyOTP}>Verify</button>
-                      <button className="btn btn-primary btn-round mb-30" type="button" style={{ marginLeft: "5px" }}>Regenerate</button>
+                      <button className="btn btn-primary btn-round mb-30"
+                        disabled = {countdown == 0 ? false : true}
+                      type="button" style={{ marginLeft: "5px" }} onClick={handleRegenration}>Regenerate</button>
                     </form>
                   </div>
                 </div>
@@ -95,6 +104,7 @@ const OTPValidation = () => {
           </div>
         </div>
       </section>
+      
     </div>
   )
 }

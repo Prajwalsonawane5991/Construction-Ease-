@@ -58,5 +58,10 @@ resetPassword(resetData)
   return axios.put("http://localhost:8084/api/services/reset-password",resetData);
 }
 
+regenerateOtp(email)
+{
+  return axios.put("http://localhost:8084/api/services/regenerate-otp/"+email);
+}
+
 }
 export default new ContractorService();
