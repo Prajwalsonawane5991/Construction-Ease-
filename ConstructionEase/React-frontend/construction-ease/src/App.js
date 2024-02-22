@@ -67,7 +67,7 @@ function App() {
         <FooterComponent></FooterComponent>
         <ToastContainer />
         </div>
-  </div>
+  </div>  
 
 
   );

@@ -1,7 +1,0 @@
-package com.demo.project.dao;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface studentDao extends JpaRepository<Student,Integer> {
-
-}

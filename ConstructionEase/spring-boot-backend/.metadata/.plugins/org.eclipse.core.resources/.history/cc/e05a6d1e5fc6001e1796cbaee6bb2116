@@ -1,5 +1,0 @@
-package com.demo.project.dao;
-
-public interface studentDao {
-
-}
