@@ -1,5 +1,0 @@
-package Construction.Ease.Project.Exception;
-
-public class ResourceNotFoundException {
-
-}

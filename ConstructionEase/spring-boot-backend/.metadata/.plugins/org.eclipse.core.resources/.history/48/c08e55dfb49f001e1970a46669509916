@@ -1,9 +1,0 @@
-package construction.project.beans;
-
-public class Contractor {
-	
-	private String username;
-	private String password;
-	
-
-}
