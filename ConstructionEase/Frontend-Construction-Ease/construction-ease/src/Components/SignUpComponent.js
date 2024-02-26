@@ -69,7 +69,9 @@ const SignUpComponent = () => {
        
       })
       .catch(error => {
-        console.log(error);
+        if(error.code==="ERR_NETWORK")
+         toast.error("unable to connect to the server");
+        else
         toast.error("Email id already present");
       });
     }
@@ -90,7 +92,11 @@ const SignUpComponent = () => {
          
         })
         .catch(error => {
-          console.log(error);
+         if(error.code==="ERR_NETWORK")
+         
+          toast.error("unable to connect to the server");
+         
+          else
           toast.error("Email id already present");
         });
       }
@@ -147,7 +153,7 @@ const SignUpComponent = () => {
                   </div>
                   <div className="col-lg-6">
                     <div className="contact-gmap">
-                      <img src="assets/img/service/signup.jpeg" alt="Using Memes in Your" />
+                      <img src="assets/img/service/signup.jpeg" alt="Image not found" />
                     </div>
                   </div>
                 </div>
