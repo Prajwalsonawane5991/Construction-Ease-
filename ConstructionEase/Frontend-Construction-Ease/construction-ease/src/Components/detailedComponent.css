@@ -1,0 +1,56 @@
+/* DetailedPlanComponent.css */
+
+.offer-details {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.offer-details h4 {
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+.offer-details ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.offer-details ul li {
+  margin-bottom: 5px;
+  color: #6c757d;
+  font-size: 12px; /* Increase font size */
+}
+
+.offer-details ul li::before {
+  content: "\2022"; /* Bullet character */
+  color: #28a745; /* Bullet color */
+  font-size: 10px;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.offer-details .no-offers {
+  color: #dc3545;
+  font-style: italic;
+}
+
+.read-more-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.description {
+  max-height: 100px; /* Limit the height to show only a portion of the description */
+  overflow: hidden; /* Hide the overflow */
+  transition: max-height 0.3s ease; /* Smooth transition */
+}
+
+.description.expanded {
+  max-height: unset; /* Show the full description when expanded */
+}
