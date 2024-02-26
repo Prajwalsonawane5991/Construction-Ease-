@@ -94,6 +94,8 @@ const SignUpComponent = () => {
           toast.error("Email id already present");
         });
       }
+   
+
   }
   }
 

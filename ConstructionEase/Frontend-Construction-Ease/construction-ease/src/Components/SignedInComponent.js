@@ -89,7 +89,23 @@ const SignInComponent = () => {
             setId(foundClient.id);
       }
       }
+      else{
+        if(data.role==="admin")
+        {
+          if (foundAdmin) {
+            const foundAdmin = admin.find((c) => c.id === data.id);
+            console.log('authenticated', foundAdmin);
+            console.log('found Admin', foundAdmin);
+  
+            setFoundAdmin(foundAdmin);
+            setemail(foundAdmin.username);
+            setpassword(foundAdmin.password);
+            setId(foundAdmin.id);
+            setFlag(true);
+        }
+      }
     }
+  }
   })
 
 
@@ -156,7 +172,7 @@ const SignInComponent = () => {
             "email": foundContractor.email
 
           }))
-          //navigate("/projects/"+foundContractor.id);
+         
         }
         else {
           setusername('');
@@ -217,8 +233,13 @@ const SignInComponent = () => {
           setFlag(true);
           console.log('flag is', flag);
           navigate("/admin");
-          toast.success("Logged in successfully" + +"Welcome Admin!");
+          toast.success("Logged in successfully"+" "+"Welcome"+" "+foundAdmin.username);
           console.log(foundAdmin.id)
+          sessionStorage.setItem("user", JSON.stringify({
+            "role": "admin",
+            "admin_id": foundAdmin.id
+
+          }))
 
         }
         else {
