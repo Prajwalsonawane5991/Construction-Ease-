@@ -1,9 +1,11 @@
 
 
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const AdminHeaderComponent = () => {
+const navigate = useNavigate();
 
     return(
             	
@@ -29,7 +31,12 @@ const AdminHeaderComponent = () => {
 								</li>
 								<li><a href="/cont">ContactInfo</a>
 								</li>
-								<li><a href="/">Logout</a>
+								<li>
+								<a className="text-grey" style={{cursor:"pointer"}} onClick={()=>{
+									sessionStorage.removeItem("user")
+									navigate("/")
+									toast.success("Logged out succesfully")
+								}}>Logout</a>
 								</li>
 							</ul>
           
