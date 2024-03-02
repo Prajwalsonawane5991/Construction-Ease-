@@ -1,6 +1,6 @@
 <h1>Construction-Ease</h1>
 <h3>Objective:</h3><hr>
-•	This website is mainly designed for those people who are searching contractors for building their homes.<br>
+•	This website is mainly designed for those people who are searching contractors for building their homes.<br><br>
 •	This platform simplifies the entire construction process, offering a turnkey solution that saves time, money, and effort for property owners.<br>
 <h3>Scope:</h3><hr>
 •	By sitting at home, by one click user will be able to select a contractor, select a plan for building. <br>
