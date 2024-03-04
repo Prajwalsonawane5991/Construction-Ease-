@@ -1,6 +1,5 @@
 package com.example.demo.dto;
 
-
 public class ResisterDto {
 	private String name;
 	   private String email;
